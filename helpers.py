@@ -11,4 +11,12 @@ def get_lan_ip(interface):
             struct.pack('256s', interface[:15])
         )[20:24])
     except:
-        return "0.0.0.0"
+        return "0.0.0.0" # default
+
+def get_mac_address(interface):
+    try:
+        str = open('/sys/class/net/' + interface + '/address').read()
+    except:
+        str = "00:00:00:00:00:00" # default
+
+    return str[0:17]
