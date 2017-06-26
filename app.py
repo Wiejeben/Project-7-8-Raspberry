@@ -20,7 +20,7 @@ def app():
     # Send data to API
     reader = urllib2.urlopen("http://project.maarten.co.uk/test", urllib.urlencode(data))
 
-    print reader.read()
+    # print reader.read()
 
     reader.close()
 
