@@ -4,27 +4,30 @@ import urllib2
 from helpers import *
 
 gps_poller = GpsPoller()
+try:
+    gps_poller.start()
 
-def app():
-    threading.Timer(10.0, app).start()
-    global gps_poller
-    gps = gps_poller.gps_instance
+    while True:
+        gps = gps_poller.gps_instance
 
-    interface = "wlan0"
+        interface = "wlan0"
 
-    data = {
-        'lan_ip': get_lan_ip(interface),
-        'mac_address': get_mac_address(interface),
-        'gps_latitude': gps.fix.latitude,
-        'gps_longitude': gps.fix.longitude
-    }
+        data = {
+            'lan_ip': get_lan_ip(interface),
+            'mac_address': get_mac_address(interface),
+            'gps_latitude': gps.fix.latitude,
+            'gps_longitude': gps.fix.longitude
+        }
 
-    # Send data to API
-    reader = urllib2.urlopen("http://project.maarten.co.uk/test", urllib.urlencode(data))
+        # Send data to API
+        reader = urllib2.urlopen("http://project.maarten.co.uk/test", urllib.urlencode(data))
 
-    print reader.read()
+        # print reader.read()
 
-    reader.close()
+        reader.close()
 
-gps_poller.start()
-app()
+except(KeyboardInterrupt, SystemExit):
+    print "\nKilling Thread.."
+    gps_poller.running = False
+    gps_poller.join()
+    print "Done.\nExiting."
