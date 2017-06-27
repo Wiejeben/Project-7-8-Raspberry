@@ -26,6 +26,8 @@ try:
 
         reader.close()
 
+        time.sleep(10)
+
 except(KeyboardInterrupt, SystemExit):
     print "\nKilling Thread.."
     gps_poller.running = False
