@@ -15,10 +15,8 @@ def app():
     data = {
         'lan_ip': get_lan_ip(interface),
         'mac_address': get_mac_address(interface),
-        'location': {
-            'lat': gps.fix.latitude,
-            'long': gps.fix.longitude
-        }
+        'gps_latitude': gps.fix.latitude,
+        'gps_longitude': gps.fix.longitude
     }
 
     # Send data to API
