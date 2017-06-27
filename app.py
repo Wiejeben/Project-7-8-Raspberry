@@ -29,12 +29,4 @@ def app():
     reader.close()
 
 gps_poller.start()
-
-try:
-    app()
-except (KeyboardInterrupt, SystemExit):
-    print "\nKilling Thread..."
-    gps_poller.running = False
-    gps_poller.join()
-
-print "Done.\nExiting."
+app()
