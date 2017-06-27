@@ -27,15 +27,15 @@ def get_mac_address(interface):
 
 # Threat that will poll the latest GPS info from the serial
 class GpsPoller(threading.Thread):
-	def __init__(self):
-		threading.Thread.__init__(self)
-		self.gps_instance = gps(mode=WATCH_ENABLE)
-		self.running = True
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.gps_instance = gps(mode=WATCH_ENABLE)
+        self.running = True
 
-	def run(self):
-		try:
-			while self.running:
-				self.gps_instance.next()
-				time.sleep(0.2)
-		except StopIteration:
-			pass
+    def run(self):
+        try:
+            while self.running:
+                self.gps_instance.next()
+                time.sleep(0.2)
+        except StopIteration:
+            pass
