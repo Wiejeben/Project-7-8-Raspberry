@@ -24,6 +24,8 @@ try:
             reader = urllib2.urlopen("http://project.maarten.co.uk/test", urllib.urlencode(data))
             # print reader.read()
             reader.close()
+        except Exception:
+            print "HTTP error."
         finally:
             time.sleep(10)
 
