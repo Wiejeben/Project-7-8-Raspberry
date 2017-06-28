@@ -21,7 +21,7 @@ try:
 
         try:
             # Send data to API
-            reader = urllib2.urlopen("http://project.maarten.co.uk/test", urllib.urlencode(data))
+            reader = urllib2.urlopen("http://project.maarten.co.uk/submit", urllib.urlencode(data))
             print reader.read()
             reader.close()
         except urllib2.HTTPError, e:
