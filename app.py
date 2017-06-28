@@ -19,14 +19,13 @@ try:
             'gps_longitude': gps.fix.longitude
         }
 
-        # Send data to API
-        reader = urllib2.urlopen("http://project.maarten.co.uk/test", urllib.urlencode(data))
-
-        # print reader.read()
-
-        reader.close()
-
-        time.sleep(10)
+        try:
+            # Send data to API
+            reader = urllib2.urlopen("http://project.maarten.co.uk/test", urllib.urlencode(data))
+            # print reader.read()
+            reader.close()
+        finally:
+            time.sleep(10)
 
 except(KeyboardInterrupt, SystemExit):
     print "\nKilling Thread.."
