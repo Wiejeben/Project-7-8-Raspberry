@@ -1,4 +1,4 @@
-import threading
+import httplib
 import urllib
 import urllib2
 from helpers import *
@@ -22,10 +22,18 @@ try:
         try:
             # Send data to API
             reader = urllib2.urlopen("http://project.maarten.co.uk/test", urllib.urlencode(data))
-            # print reader.read()
+            print reader.read()
             reader.close()
+        except urllib2.HTTPError, e:
+            print 'HTTPError = ' + str(e.code)
+        except urllib2.URLError, e:
+            print 'URLError = ' + str(e.reason)
+        except httplib.HTTPException, e:
+            print 'HTTPException'
         except Exception:
-            print "HTTP error."
+            import traceback
+
+            print 'generic exception: ' + traceback.format_exc()
         finally:
             time.sleep(10)
 
