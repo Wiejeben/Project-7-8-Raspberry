@@ -35,7 +35,7 @@ try:
 
             print 'generic exception: ' + traceback.format_exc()
         finally:
-            time.sleep(10)
+            time.sleep(5)
 
 except(KeyboardInterrupt, SystemExit):
     print "\nKilling Thread.."
